@@ -1,0 +1,33 @@
+
+*Standalone version usage: alarm_fingerprints_2 [parameters] < inputfile
+
+*Starting alarm_fingerprints, version 2.1
+*====================================================================================================================
+*Run parameters:
+*(-s) sample_each=1   (integer, should be >= 1)
+*(-i) initial_avg_diff=10000.000000   (float, should be > 0)
+*(-n) n_amend_avgdiff=500   (integer, should be >= 1)
+*(-a) number_of_points_to_alarm=5   (integer, should be >= 1)
+*(-m) multiplicator_to_detect=4.000000   (float, should be >= 1)
+*(-u) wait_state_usec=1000   (integer, should be >= 0)
+*(-l) fingerprint_length=128   (integer, should be >= 8 and power of 2)
+*(-e) fingerprint_match_positives_from=0   (integer, should be >=0)
+*(-f) fingerprint_match_positives_to=511   (integer, should be >= 1 and <= fingerprint_length)
+*(-t) genpattern_hour_limit=0   (integer, should be 0 (unlimited) or >= 1)
+*(-h) print_help=1   (integer, should be 0 (not present) or 1 (present) )
+*(-j) fingerprint_match_negatives_from=0   (integer, should be >= 0)
+*(-k) fingerprint_match_negatives_to=511   (integer, should be >= 1 and <= fingerprint_length)
+*(-w) wavelet_function=12   (integer, with one of following values: 2,4,6,8,10,12,14,16,18,20)
+*(-c) distance_calculation_type=2   (integer, should be 1 or 2)
+*(-g) generate_fingerprints=0   (integer, value 0,1 or 2)
+*(-y) matching_distance_positives_max=0.100000   (float, should be within interval 0..1)
+*(-z) matching_distance_negatives_max=0.100000   (float, should be within interval 0..1)
+*(-r) matches_evaluation_logic=4   (integer, should be within interval 0..4)
+*(-x) skip_if_contains='m'   (string)
+*(-b) use_diff_value=0   (integer, should be 0 (not present) or 1 (present) )
+*(-o) matchdistance_to_output=0   (string)
+*(-p) fingerprints_directory='.'   (string, '.' means 'current directory')
+*(-d) debug_level=1   (integer, should be 0, 1 or 2)
+*====================================================================================================================
+
+*Parameter -h found, exiting
