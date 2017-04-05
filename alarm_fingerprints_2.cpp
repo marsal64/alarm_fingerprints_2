@@ -1,10 +1,10 @@
 //========================================
 // Program	   : alarm_fingerprints_2
 // Author      : Martin Saly
-// Version     : 2.11
+// Version     : 2.xx
 // Description : Fingerprints based alarm 
 //========================================
-#define AF_PROGRAM_VERSION "2.11"
+#define AF_PROGRAM_VERSION "2.12"
 
 /*
  standalone program version to be run using:
@@ -969,7 +969,7 @@ int main(int argc, char* argv[]) {
 
 		// calculate diff as abs value
 		_diffnoabs = _curval - _lastval;
-		_diff = abs(_diffnoabs);
+		_diff = fabs(_diffnoabs);
 
 		// pattern evaluation
 		if (_ispattern == 1) {
