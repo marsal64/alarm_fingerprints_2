@@ -1,10 +1,10 @@
 //========================================
-// Program	   : alarm_fingerprints_2
+// Program	   : alarm_fingerprints
 // Author      : Martin Saly
 // Version     : 2.xx
 // Description : Fingerprints based alarm 
 //========================================
-#define AF_PROGRAM_VERSION "2.12"
+#define AF_PROGRAM_VERSION "2.5"
 
 /*
  standalone program version to be run using:
@@ -113,15 +113,15 @@ int main(int argc, char* argv[]) {
 	_fingerprint_match_negatives_from = 0;
 	_fingerprint_match_positives_to = 511;
 	_fingerprint_match_negatives_to = 511;
-	_wavelet_function = 12;
-	_wav_func = &daub12_transform; // default pointer to function
+	_wavelet_function = 2;
+	_wav_func = &daub2_transform; // default pointer to function
 	_generate_fingerprints = 0;
-	_matching_distance_positives_max = 0.1;
-	_matching_distance_negatives_max = 0.1;
+	_matching_distance_positives_max = 0.5;
+	_matching_distance_negatives_max = 0.5;
 	_matches_evaluation_logic = 1;
 	_skip_if_contains = "m";
 	_use_diff_value = 0;
-	_fingerprints_directory = ".";
+	_fingerprints_directory = "./";
 	_debug_level = 0;
 	_matchdistance_to_output = 0;
 	_genpattern_hour_limit = 0;
@@ -585,7 +585,7 @@ int main(int argc, char* argv[]) {
 						+ std::to_string(_matchdistance_to_output)
 						+ "   (string)\n" + "*(-p) fingerprints_directory='"
 						+ _fingerprints_directory
-						+ "'   (string, '.' means 'current directory')\n"
+						+ "'   (string, './' means 'current directory')\n"
 						+ "*(-d) debug_level=" + std::to_string(_debug_level)
 						+ "   (integer, should be 0, 1 or 2)\n" + "*"
 						+ std::string(116, '=');
@@ -785,7 +785,7 @@ int main(int argc, char* argv[]) {
 			// debug
 			// std::cout << "(debug) patfilename[i]: " << fn << std::endl;
 
-			std::ifstream lfpfile(fn);
+			std::ifstream lfpfile(_fingerprints_directory+fn);
 			if (lfpfile.is_open()) {
 
 				// file is open, now parse patnumber and exit if not valid (exactly e.g. p_0001_)
@@ -848,13 +848,13 @@ int main(int argc, char* argv[]) {
 				// fingerprint seems to be read: push fingerprint name
 
 				// debug
-				// std::cout << "(debug) push patname: " << patname << std::endl;
+				//std::cout << "(debug) push patname: " << patname << std::endl;
 
 				_fngptsnames.push_back(patname);
 				_numberfps++;
 
 				// debug
-				// std::cout << "(debug) fngptnames size: " << _fngptsnames.size() << std::endl;
+				//std::cout << "(debug) fngptnames size: " << _fngptsnames.size() << std::endl;
 
 			}
 
@@ -1344,7 +1344,7 @@ int main(int argc, char* argv[]) {
 									"_");
 
 						// add directory and suffix for fingerprints filename
-						_filenam = _fingerprints_directory + "/" + _filenam +
+						_filenam = _filenam +
 						// add suffix .fpr and fingerprint parameter id
 								".fpr" + std::to_string(_wavelet_function) +
 								// add fingerprint length
@@ -1352,7 +1352,7 @@ int main(int argc, char* argv[]) {
 						// debug
 						//std::cout << "(debug) filename of wavelets: " << _filenam << std::endl;
 
-						outputfile.open(_filenam);
+						outputfile.open(_fingerprints_directory + _filenam);
 						for (int i = 0; i < _fingerprint_n; i++) {
 							outputfile << std::fixed << _vw[i] << std::endl;
 						}
